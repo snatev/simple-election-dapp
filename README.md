@@ -4,7 +4,6 @@ A basic test and learning project demonstrating a simple election system on the 
 
 ## Features
 
-- **Add Candidates**: Admin can add new candidates to the election.
 - **Vote**: Users can vote for their preferred candidate. Each user can vote only once.
 - **Admin Panel**: Special functionalities for the admin, including adding and removing candidates.
 - **View Candidates and Votes**: Users can view the list of candidates and their respective vote counts.
