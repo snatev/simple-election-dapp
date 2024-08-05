@@ -12,6 +12,8 @@ A basic test and learning project demonstrating a simple election system on the 
 
 </div>
 
+<br>
+
 ## Features
 
 | <div align="center">Feature</div>             | <div align="center">Description</div>                                                                                       |
@@ -19,6 +21,8 @@ A basic test and learning project demonstrating a simple election system on the 
 | <div align="center">**Vote**</div>            | <div>Users can vote for their preferred candidate. Each user can vote only once, ensuring fairness and preventing duplicate voting.</div> |
 | <div align="center">**Admin Panel**</div>     | <div>Special functionalities for the admin, including adding and removing candidates. The admin has exclusive rights to manage the election settings.</div> |
 | <div align="center">**View Candidates and Votes**</div> | <div>Users can view the list of candidates along with their respective vote counts. This allows for transparency and keeps the process open to all participants.</div> |
+
+<br>
 
 ## Technologies Used
 
