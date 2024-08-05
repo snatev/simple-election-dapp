@@ -12,7 +12,10 @@ window.addEventListener('load', async () => {
             return;
         }
     } else if (window.web3) web3 = new Web3(window.web3.currentProvider);
-    else return;
+    else {
+        showAlert("No Web3 Provider Found", "warning");
+        return;
+    }
 
     if (web3) {
         const electionAbi = [
@@ -170,6 +173,7 @@ window.addEventListener('load', async () => {
                 "constant": true
             }
         ];
+
         const electionAddress = '0x36A275460dF7375751A7e8AdfE5b2D617BAD55FC';
         election = new web3.eth.Contract(electionAbi, electionAddress);
 
@@ -178,7 +182,7 @@ window.addEventListener('load', async () => {
 
         loadCandidates();
         checkAdmin();
-    } else showAlert("Web3 is not initialized. Please check your MetaMask or Web3 provider", "danger");
+    }
 });
 
 async function checkAdmin() {
@@ -202,59 +206,55 @@ async function loadCandidates() {
 
                 candidateElement.className = 'list-group-item d-flex justify-content-between align-items-center';
                 candidateElement.innerHTML = `
-                    <span>${candidate.name} - ${candidate.voteCount} votes</span>
+                    <span>
+                        <span class="text-primary">${candidate.name}</span> - ${candidate.voteCount} votes
+                    </span>
                     <div>
                         ${!hasVoted ? `<button onclick="vote(${candidate.id})" class="btn btn-primary btn-sm">Vote</button>` : ''}
-                        ${voter === admin ? `<button onclick="removeCandidate(${candidate.id})" class="btn btn-danger btn-sm ms-2">x</button>` : ''}
+                        ${voter === admin ? `<button onclick="removeCandidate(${candidate.id})" class="btn btn-danger btn-sm ms-2">X</button>` : ''}
                     </div>
                 `;
 
                 candidatesDiv.appendChild(candidateElement);
             }
         });
-    } catch (error) { showAlert("Error loading candidates - " + error.message, "danger"); }
+    } catch (error) { showAlert(error.message, "danger"); }
 }
 
 async function addCandidate() {
     try {
-        const candidateName = document.getElementById('candidateName').value;
-        const accounts = await web3.eth.getAccounts();
-
-        if (!accounts || accounts.length === 0) {
-            showAlert("No accounts found. Ensure you are logged in", "warning");
+        const candidateName = document.getElementById('candidateName').value.trim();
+        if (!candidateName) {
+            showAlert("Name Cannot Be Empty", "warning");
             return;
         }
 
+        const candidates = await election.methods.getCandidates().call();
+        if (candidates.some(candidate => candidate.name === candidateName)) {
+            showAlert("Candidate Already Exists", "warning");
+            return;
+        }
+
+        const accounts = await web3.eth.getAccounts();
         await election.methods.addCandidate(candidateName).send({ from: accounts[0] });
         loadCandidates();
-    } catch (error) { showAlert("Error adding candidate - " + error.message, "danger"); }
+    } catch (error) { showAlert(error.message, "danger"); }
 }
 
 async function removeCandidate(candidateId) {
     try {
         const accounts = await web3.eth.getAccounts();
-        if (!accounts || accounts.length === 0) {
-            showAlert("No accounts found. Ensure you are logged in", "warning");
-            return;
-        }
-
         await election.methods.removeCandidate(candidateId).send({ from: accounts[0] });
         loadCandidates();
-
-    } catch (error) { showAlert("Error removing candidate - " + error.message, "danger"); }
+    } catch (error) { showAlert(error.message, "danger"); }
 }
 
 async function vote(candidateId) {
     try {
         const accounts = await web3.eth.getAccounts();
-        if (!accounts || accounts.length === 0) {
-            showAlert("No accounts found. Ensure you are logged in.", "warning");
-            return;
-        }
-
         await election.methods.vote(candidateId).send({ from: accounts[0] });
         loadCandidates();
-    } catch (error) { showAlert("Error voting - " + error.message, "danger"); }
+    } catch (error) { showAlert(error.message, "danger"); }
 }
 
 function showAlert(message, type) {
@@ -264,7 +264,5 @@ function showAlert(message, type) {
     alertElement.innerText = message;
 
     alertContainer.appendChild(alertElement);
-    setTimeout(() => {
-        alertElement.remove();
-    }, 3000);
+    setTimeout(() => { alertElement.remove(); }, 3000);
 }

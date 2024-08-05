@@ -5,30 +5,34 @@
     <title>Election Test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <style>
+        body {
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-image: radial-gradient(#d3d3d33a 1px, transparent 1px), radial-gradient(#d3d3d33a 1px, transparent 1px);
+        }
+    </style>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
     <script src="app.js" defer></script>
 </head>
-<body class="text-center">
-    <div class="container mt-5">
-        <div id="adminPanel" class="row d-none">
-            <div class="col-md-6 mx-auto shadow border bg-secondary bg-opacity-10 rounded-3 p-3">
-                <h2 class="text-secondary mb-4">ADMIN</h2>
-                <div class="form-group">
-                    <input type="text" id="candidateName" class="form-control text-center" placeholder="Candidate Name">
-                </div>
-                <button onclick="addCandidate()" class="btn btn-primary w-100 mt-2">Add Candidate</button>
+<body class="d-flex align-items-center justify-content-center bg-light vh-100">
+    <div class="container-fluid d-flex flex-column align-items-center">
+        <div id="adminPanel" class="d-flex justify-content-center d-none w-100 mb-3">
+            <div class="col-md-10 col-lg-8 col-xl-6 shadow-sm border d-flex align-items-center bg-secondary bg-opacity-10 rounded-3 p-3">
+                <input type="text" id="candidateName" class="form-control text-center me-2 p-2" placeholder="Candidate Name">
+                <button onclick="addCandidate()" class="btn btn-primary">Add</button>
             </div>
         </div>
 
-        <div class="row mt-5">
-            <div class="col-md-6 mx-auto shadow border bg-secondary bg-opacity-10 rounded-3 p-3">
-                <h2 class="text-secondary mb-4">VOTING</h2>
+        <div class="d-flex justify-content-center w-100 mt-1">
+            <div class="col-md-10 col-lg-8 col-xl-6 shadow-sm border bg-secondary bg-opacity-10 rounded-3 p-3">
                 <div id="candidates" class="list-group"></div>
             </div>
         </div>
-    </div>
 
-    <div id="alertContainer" class="container mt-5"></div>
+        <div id="alertContainer" class="text-center mt-3 w-50"></div>
+    </div>
 </body>
 </html>

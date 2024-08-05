@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.7.3;
 pragma experimental ABIEncoderV2;
 
@@ -9,8 +8,8 @@ contract Election {
         uint voteCount;
     }
 
-    mapping(uint => Candidate) public candidates;
     mapping(address => bool) public voters;
+    mapping(uint => Candidate) public candidates;
 
     address public admin;
     uint public candidatesCount;
@@ -29,6 +28,7 @@ contract Election {
     function removeCandidate(uint _candidateId) public {
         require(msg.sender == admin, "Only Admin Can Remove");
         require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid Candidate");
+
         delete candidates[_candidateId];
     }
 
