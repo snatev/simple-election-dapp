@@ -2,18 +2,18 @@ let web3;
 let admin;
 let election;
 
-window.addEventListener('load', async () => {
+window.addEventListener("load", async () => {
     if (window.ethereum) {
         web3 = new Web3(window.ethereum);
 
-        try { await window.ethereum.request({ method: 'eth_requestAccounts' }); }
+        try { await window.ethereum.request({ method: "eth_requestAccounts" }); }
         catch (error) {
             showAlert(error.message, "warning");
             return;
         }
     } else if (window.web3) web3 = new Web3(window.web3.currentProvider);
     else {
-        showAlert("No Web3 Provider Found", "warning");
+        showAlert("No Web3 Provider Found", "danger");
         return;
     }
 
@@ -174,7 +174,7 @@ window.addEventListener('load', async () => {
             }
         ];
 
-        const electionAddress = '0x36A275460dF7375751A7e8AdfE5b2D617BAD55FC';
+        const electionAddress = "0x36A275460dF7375751A7e8AdfE5b2D617BAD55FC";
         election = new web3.eth.Contract(electionAbi, electionAddress);
 
         const accounts = await web3.eth.getAccounts();
@@ -187,14 +187,14 @@ window.addEventListener('load', async () => {
 
 async function checkAdmin() {
     const accounts = await web3.eth.getAccounts();
-    if (accounts[0] === admin) document.getElementById('adminPanel').classList.remove('d-none');
+    if (accounts[0] === admin) document.getElementById("adminPanel").classList.remove("d-none");
 }
 
 async function loadCandidates() {
     try {
         const candidates = await election.methods.getCandidates().call();
-        const candidatesDiv = document.getElementById('candidates');
-        candidatesDiv.innerHTML = '';
+        const candidatesDiv = document.getElementById("candidates");
+        candidatesDiv.innerHTML = "";
 
         const accounts = await web3.eth.getAccounts();
         const voter = accounts[0];
@@ -202,18 +202,17 @@ async function loadCandidates() {
 
         candidates.forEach(candidate => {
             if (candidate.name) {
-                const candidateElement = document.createElement('div');
+                const candidateElement = document.createElement("div");
 
-                candidateElement.className = 'list-group-item d-flex justify-content-between align-items-center';
+                candidateElement.className = "list-group-item d-flex justify-content-between align-items-center";
                 candidateElement.innerHTML = `
                     <span>
-                        <span class="text-primary">${candidate.name}</span> - ${candidate.voteCount} votes
+                        <span class="text-primary"><i class="fa-solid fa-user-tie me-1"></i> ${candidate.name}</span> - ${candidate.voteCount} votes
                     </span>
                     <div>
-                        ${!hasVoted ? `<button onclick="vote(${candidate.id})" class="btn btn-primary btn-sm">Vote</button>` : ''}
-                        ${voter === admin ? `<button onclick="removeCandidate(${candidate.id})" class="btn btn-danger btn-sm ms-2">X</button>` : ''}
-                    </div>
-                `;
+                        ${!hasVoted ? `<button onclick="vote(${candidate.id})" class="btn btn-primary bg-primary bg-opacity-50 btn-sm"><i class="fa-solid fa-check"></i> Vote</button>` : ""}
+                        ${voter === admin ? `<button onclick="removeCandidate(${candidate.id})" class="btn btn-danger bg-danger bg-opacity-50 btn-sm ms-2"><i class="fa-regular fa-trash-can"></i></button>` : ""}
+                    </div>`;
 
                 candidatesDiv.appendChild(candidateElement);
             }
@@ -223,7 +222,7 @@ async function loadCandidates() {
 
 async function addCandidate() {
     try {
-        const candidateName = document.getElementById('candidateName').value.trim();
+        const candidateName = document.getElementById("candidateName").value.trim();
         if (!candidateName) {
             showAlert("Name Cannot Be Empty", "warning");
             return;
@@ -258,11 +257,12 @@ async function vote(candidateId) {
 }
 
 function showAlert(message, type) {
-    const alertContainer = document.getElementById('alertContainer');
-    const alertElement = document.createElement('div');
+    const alertContainer = document.getElementById("alertContainer");
+    const alertElement = document.createElement("div");
+
     alertElement.className = `alert alert-${type}`;
     alertElement.innerText = message;
 
     alertContainer.appendChild(alertElement);
-    setTimeout(() => { alertElement.remove(); }, 3000);
+    setTimeout(() => { alertElement.remove(); }, 5000);
 }

@@ -1,34 +1,75 @@
-<h1 align="center">Simple Election DApp</h1>
-
-<p align="center">
-A basic test and learning project demonstrating a simple election system on the Ethereum blockchain using Solidity, Web3.js, MetaMask, etc.
-</p>
-
-<br>
-
 <div align="center">
-
-![Vote](https://github.com/user-attachments/assets/62cf99fb-2406-492e-a274-7a0c8292f952)
-
+    <h1>🗳️ Simple Election DApp</h1>
 </div>
 
+<table align="center">
+    <tr>
+        <td align="center">
+            <img src="https://github.com/user-attachments/assets/7ce163b6-fc7f-44a5-8511-74116fb1753f" width="300">
+        </td>
+        <td></td>
+        <td align="center">
+            <p>A basic test and learning project demonstrating a simple election system on the Ethereum blockchain using Solidity, Web3.js, MetaMask, and more. This version is a very basic and limited implementation.</p>
+        </td>
+    </tr>
+</table>
+
 <br>
 
-## Features
+## 🚀 Features
 
-| <div align="center">Feature</div>             | <div align="center">Description</div>                                                                                       |
-|---------------------|---------------------------------------------------------------------------------------------------|
-| <div align="center">**Vote**</div>            | <div>Users can vote for their preferred candidate. Each user can vote only once, ensuring fairness and preventing duplicate voting.</div> |
-| <div align="center">**Admin Panel**</div>     | <div>Special functionalities for the admin, including adding and removing candidates. The admin has exclusive rights to manage the election settings.</div> |
-| <div align="center">**View Candidates and Votes**</div> | <div>Users can view the list of candidates along with their respective vote counts. This allows for transparency and keeps the process open to all participants.</div> |
+<table align="center">
+    <tbody>
+        <tr>
+            <td align="center">🗳️<br><b>Vote</b></td>
+            <td></td>
+            <td align="justify">Users can vote for their preferred candidate. Each user can vote only once, ensuring fairness and preventing duplicate voting.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">👨‍💼<br><b>Admin</b></td>
+            <td></td>
+            <td align="justify">Special functionalities for the admin, including adding and removing candidates. The admin has exclusive rights to manage the election settings.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">📊<br><b>Overview</b></td>
+            <td></td>
+            <td align="justify">Users can view the list of candidates along with their respective vote counts. This allows for transparency and keeps the process open to all participants.</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
 
 <br>
 
-## Technologies Used
+## 🛠️ Technologies Used
 
-| <div align="center">Technology</div>  | <div align="center">Description</div>                                                                                             |
-|-------------|---------------------------------------------------------------------------------------------------------|
-| <div align="center">**Solidity**</div>| <div>The primary programming language for writing smart contracts. Used to define the logic of the election process.</div> |
-| <div align="center">**Ganache**</div> | <div>A personal Ethereum blockchain for local development and testing. Provides a safe environment to test the DApp without real ETH.</div> |
-| <div align="center">**Web3.js**</div> | <div>A JavaScript library for interacting with the Ethereum blockchain. Used to communicate between the front end and the smart contracts.</div> |
-| <div align="center">**MetaMask**</div>| <div>A browser extension that acts as a wallet for managing Ethereum accounts and transactions. Allows users to securely interact with the DApp.</div> |
+<table align="center">
+    <tbody>
+        <tr>
+            <td align="center">⚙️<br><b>Solidity</b></td>
+            <td></td>
+            <td align="justify">The primary programming language for writing smart contracts. Used to define the logic of the election process.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">🌐<br><b>Ganache</b></td>
+            <td></td>
+            <td align="justify">A personal Ethereum blockchain for local development and testing. Provides a safe environment to test the DApp without real ETH.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">📚<br><b>Web3.js</b></td>
+            <td></td>
+            <td align="justify">A JavaScript library for interacting with the Ethereum blockchain. Used to communicate between the front end and the smart contracts.</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">🦊<br><b>MetaMask</b></td>
+            <td></td>
+            <td align="justify">A browser extension that acts as a wallet for managing Ethereum accounts and transactions. Allows users to securely interact with the DApp.</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
